@@ -82,8 +82,8 @@ export default function Home() {
               return (
                 <tr>
                   <td className="text-center">{obj.id}</td>
-                  <td className="text-center">{obj.title}</td>
-                  <td className="text-center">{obj.desc}</td>
+                  <td className="text-center">{obj.values.title}</td>
+                  <td className="text-center">{obj.values.desc}</td>
                 </tr>
               );
             })}
