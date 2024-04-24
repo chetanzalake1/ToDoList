@@ -43,7 +43,7 @@ export default function Home() {
             Title:{" "}
           </label>
           <input
-            className="ring-1 w-full px-2 h-[40px]"
+            className="ring-1 w-full px-2 h-[40px] rounded-xl"
             type="text"
             name="title"
           />
@@ -54,7 +54,7 @@ export default function Home() {
             Desc:{" "}
           </label>
           <input
-            className="ring-1 w-full px-2 h-[40px]"
+            className="ring-1 w-full px-2 h-[40px] rounded-xl"
             type="text"
             name="desc"
           />
@@ -69,7 +69,7 @@ export default function Home() {
       </form>
 
       {todos.length > 0 && (
-        <table className="mt-9 border-[1px] border-black p-4">
+        <table className="mt-9 border-[1px] border-black p-4 table-fixed w-full">
           <thead>
             <tr>
               <th>ID</th>
@@ -80,14 +80,14 @@ export default function Home() {
           <tbody>
             {todos.map((obj) => {
               return (
-                <tr>
-                  <td className="text-center">{obj.id}</td>
-                  <td className="text-center">{obj.values.title}</td>
-                  <td className="text-center">{obj.values.desc}</td>
+                <tr className="">
+                  <th className="text-center w-9">{obj.id}</th>
+                  <td className="text-center p-2">{obj.values.title}</td>
+                  <td className="text-center p-2">{obj.values.desc}</td>
                 </tr>
               );
             })}
-          </tbody>
+          </tbody>  
         </table>
       )}
     </main>
