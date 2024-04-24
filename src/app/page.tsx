@@ -6,7 +6,7 @@ export default function Home() {
   const [todos, setTodos] = useState<
     {
       id: string;
-      values: { title: string; desc: string };
+      val: { title: string; desc: string; status: boolean };
     }[]
   >([]);
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -23,7 +23,7 @@ export default function Home() {
         ...todos,
         {
           id: Math.floor(Math.random() * 1000).toString(),
-          values: { title, desc },
+          val: { title, desc, status: false },
         },
       ]);
     const target = event.target as HTMLFormElement;
@@ -81,13 +81,48 @@ export default function Home() {
             {todos.map((obj) => {
               return (
                 <tr className="">
-                  <th className="text-center w-9">{obj.id}</th>
-                  <td className="text-center p-2">{obj.values.title}</td>
-                  <td className="text-center p-2">{obj.values.desc}</td>
+                  <th
+                    className={`text-center w-9 ${
+                      obj.val.status ? "line-through" : ""
+                    }`}
+                  >
+                    {obj.id}
+                  </th>
+                  <td
+                    className={`text-center p-2 ${
+                      obj.val.status ? "line-through" : ""
+                    }`}
+                  >
+                    {obj.val.title}
+                  </td>
+                  <td
+                    className={`text-center p-2 ${
+                      obj.val.status ? "line-through" : ""
+                    }`}
+                  >
+                    {obj.val.desc}
+                  </td>
+                  <td className="table-cell">
+                    <input
+                      type="checkbox"
+                      id="completed"
+                      name="status"
+                      value="true"
+                      onClick={() => {
+                        const allTodos = [...todos];
+                        const myObj = allTodos.filter(
+                          (objec) => objec.id === obj.id
+                        )[0];
+                        myObj.val.status = !myObj.val.status;
+                        setTodos(allTodos);
+                      }}
+                    />
+                    {obj.val.status ? "  Completed" : "  In progress"}
+                  </td>
                 </tr>
               );
             })}
-          </tbody>  
+          </tbody>
         </table>
       )}
     </main>
